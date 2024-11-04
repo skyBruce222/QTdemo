@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/OIP-C.jfif</file>
+        <file>img/radar.jpg</file>
+        <file>img/radarArea.bmp</file>
+        <file>img/dragonbool.jpg</file>
+    </qresource>
+</RCC>
