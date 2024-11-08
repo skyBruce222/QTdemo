@@ -1,0 +1,2 @@
+[2024-11-06 09:08:07 周三] [Debug   ] [RotaryControlThread::typechangedslot: "俯仰轴"] File[..\Darkroom_mz_ok_0628\RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[134]
+[2024-11-06 09:08:07 周三] [Debug   ] [RotaryControlThread::typechangedslot m_type: 1] File[..\Darkroom_mz_ok_0628\RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[148]

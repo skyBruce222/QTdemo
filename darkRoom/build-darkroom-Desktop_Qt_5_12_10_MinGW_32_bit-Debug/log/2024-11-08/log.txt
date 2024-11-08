@@ -1,0 +1,6 @@
+[2024-11-08 11:07:12 周五] [Debug   ] [RotaryControlThread::typechangedslot: "俯仰轴"] File[..\Darkroom_mz_ok_0628\RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[134]
+[2024-11-08 11:07:12 周五] [Debug   ] [RotaryControlThread::typechangedslot m_type: 1] File[..\Darkroom_mz_ok_0628\RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[148]
+[2024-11-08 14:36:20 周五] [Debug   ] [RotaryControlThread::typechangedslot: "俯仰轴"] File[..\Darkroom_mz_ok_0628\RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[134]
+[2024-11-08 14:36:20 周五] [Debug   ] [RotaryControlThread::typechangedslot m_type: 1] File[..\Darkroom_mz_ok_0628\RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[148]
+[2024-11-08 15:03:52 周五] [Debug   ] [RotaryControlThread::typechangedslot: "俯仰轴"] File[..\Darkroom_mz_ok_0628\RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[134]
+[2024-11-08 15:03:52 周五] [Debug   ] [RotaryControlThread::typechangedslot m_type: 1] File[..\Darkroom_mz_ok_0628\RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[148]

@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/mbit.ico</file>
+        <file>img/Mbit_Logo.png</file>
+        <file>img/close.png</file>
+        <file>img/max.png</file>
+        <file>img/min.png</file>
+        <file>img/restore.png</file>
+    </qresource>
+</RCC>

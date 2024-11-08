@@ -1,0 +1,8 @@
+[2021-06-24 09:55:32 周四] [Debug   ] [RotaryControlThread::typechangedslot: "下方位轴"] File[RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[127]
+[2021-06-24 09:55:32 周四] [Debug   ] [RotaryControlThread::typechangedslot m_type: 0] File[RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[141]
+[2021-06-24 10:38:50 周四] [Debug   ] [RotaryControlThread::typechangedslot: "下方位轴"] File[RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[127]
+[2021-06-24 10:38:50 周四] [Debug   ] [RotaryControlThread::typechangedslot m_type: 0] File[RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[141]
+[2021-06-24 10:39:01 周四] [Debug   ] [RotaryControlThread::typechangedslot: "下方位轴"] File[RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[127]
+[2021-06-24 10:39:01 周四] [Debug   ] [RotaryControlThread::typechangedslot m_type: 0] File[RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[141]
+[2021-06-24 10:46:07 周四] [Debug   ] [RotaryControlThread::typechangedslot: "下方位轴"] File[RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[127]
+[2021-06-24 10:46:07 周四] [Debug   ] [RotaryControlThread::typechangedslot m_type: 0] File[RotaryControlThread.cpp] Fun[void RotaryControlThread::typechangedslot(const QString&)] Row[141]
