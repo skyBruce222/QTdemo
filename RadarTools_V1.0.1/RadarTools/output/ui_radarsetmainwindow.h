@@ -94,20 +94,20 @@ public:
     QSpacerItem *horizontalSpacer_15;
     QLineEdit *lineEdit_6;
     QGroupBox *groupBox;
-    QGridLayout *gridLayout_4;
+    QGridLayout *gridLayout_2;
     QVideoWidget *CameraWidget;
-    QWidget *widget_9;
-    QGridLayout *gridLayout_6;
-    QSpacerItem *verticalSpacer;
-    QPushButton *pushButton;
-    QSpacerItem *horizontalSpacer_3;
-    QSpacerItem *horizontalSpacer_6;
-    QPushButton *pushButton_3;
-    QComboBox *comboBox;
-    QSpacerItem *verticalSpacer_2;
     QWidget *widget_3;
     QGridLayout *gridLayout_3;
     QLabel *label_3;
+    QGroupBox *groupBox_3;
+    QGridLayout *gridLayout_4;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton;
+    QSpacerItem *horizontalSpacer_3;
+    QSpacerItem *verticalSpacer;
+    QSpacerItem *horizontalSpacer_6;
+    QComboBox *comboBox;
+    QSpacerItem *verticalSpacer_2;
     QMenuBar *menubar;
     QMenu *menu_2;
     QMenu *menu;
@@ -468,62 +468,15 @@ public:
 "            margin-left: 2px;\n"
 "            padding: 0  0px;\n"
 "        }"));
-        gridLayout_4 = new QGridLayout(groupBox);
-        gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
+        gridLayout_2 = new QGridLayout(groupBox);
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         CameraWidget = new QVideoWidget(groupBox);
         CameraWidget->setObjectName(QString::fromUtf8("CameraWidget"));
         CameraWidget->setEnabled(true);
         CameraWidget->setFont(font2);
-        CameraWidget->setAutoFillBackground(false);
         CameraWidget->setStyleSheet(QString::fromUtf8(""));
 
-        gridLayout_4->addWidget(CameraWidget, 0, 0, 1, 1);
-
-        widget_9 = new QWidget(centralwidget);
-        widget_9->setObjectName(QString::fromUtf8("widget_9"));
-        widget_9->setGeometry(QRect(810, 250, 371, 100));
-        widget_9->setFont(font1);
-        gridLayout_6 = new QGridLayout(widget_9);
-        gridLayout_6->setObjectName(QString::fromUtf8("gridLayout_6"));
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout_6->addItem(verticalSpacer, 1, 0, 1, 1);
-
-        pushButton = new QPushButton(widget_9);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setMinimumSize(QSize(120, 30));
-        pushButton->setMaximumSize(QSize(120, 30));
-        pushButton->setFont(font1);
-
-        gridLayout_6->addWidget(pushButton, 2, 2, 1, 1);
-
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout_6->addItem(horizontalSpacer_3, 2, 1, 1, 1);
-
-        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout_6->addItem(horizontalSpacer_6, 2, 3, 1, 1);
-
-        pushButton_3 = new QPushButton(widget_9);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setMinimumSize(QSize(0, 30));
-        pushButton_3->setMaximumSize(QSize(16777215, 30));
-        pushButton_3->setFont(font1);
-
-        gridLayout_6->addWidget(pushButton_3, 2, 0, 1, 1);
-
-        comboBox = new QComboBox(widget_9);
-        comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setMinimumSize(QSize(120, 30));
-        comboBox->setMaximumSize(QSize(120, 16777215));
-        comboBox->setFont(font1);
-
-        gridLayout_6->addWidget(comboBox, 0, 0, 1, 1);
-
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout_6->addItem(verticalSpacer_2, 3, 0, 1, 1);
+        gridLayout_2->addWidget(CameraWidget, 0, 0, 1, 1);
 
         widget_3 = new QWidget(centralwidget);
         widget_3->setObjectName(QString::fromUtf8("widget_3"));
@@ -536,6 +489,51 @@ public:
         label_3->setFont(font1);
 
         gridLayout_3->addWidget(label_3, 0, 0, 1, 1);
+
+        groupBox_3 = new QGroupBox(centralwidget);
+        groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
+        groupBox_3->setGeometry(QRect(810, 250, 381, 101));
+        gridLayout_4 = new QGridLayout(groupBox_3);
+        gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
+        pushButton_3 = new QPushButton(groupBox_3);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        pushButton_3->setMinimumSize(QSize(0, 30));
+        pushButton_3->setMaximumSize(QSize(16777215, 30));
+        pushButton_3->setFont(font1);
+
+        gridLayout_4->addWidget(pushButton_3, 2, 0, 1, 1);
+
+        pushButton = new QPushButton(groupBox_3);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setMinimumSize(QSize(120, 30));
+        pushButton->setMaximumSize(QSize(120, 30));
+        pushButton->setFont(font1);
+
+        gridLayout_4->addWidget(pushButton, 2, 2, 1, 1);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_4->addItem(horizontalSpacer_3, 2, 3, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_4->addItem(verticalSpacer, 1, 0, 1, 1);
+
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_4->addItem(horizontalSpacer_6, 2, 1, 1, 1);
+
+        comboBox = new QComboBox(groupBox_3);
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+        comboBox->setMinimumSize(QSize(120, 30));
+        comboBox->setMaximumSize(QSize(120, 16777215));
+        comboBox->setFont(font1);
+
+        gridLayout_4->addWidget(comboBox, 0, 0, 1, 1);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_4->addItem(verticalSpacer_2, 3, 0, 1, 1);
 
         radarSetMainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(radarSetMainWindow);
@@ -620,7 +618,7 @@ public:
 
         label_9->setText(QApplication::translate("radarSetMainWindow", "\344\274\240\350\276\223\351\200\237\347\216\207\357\274\232", nullptr));
         label_8->setText(QApplication::translate("radarSetMainWindow", "\351\233\267\350\276\276\345\236\213\345\217\267\357\274\232", nullptr));
-        comboBox_3->setItemText(0, QApplication::translate("radarSetMainWindow", "IPR-C10", nullptr));
+        comboBox_3->setItemText(0, QApplication::translate("radarSetMainWindow", "IDR-C10", nullptr));
 
         label->setText(QApplication::translate("radarSetMainWindow", "\350\277\236\346\216\245\347\212\266\346\200\201", nullptr));
         label_led->setText(QApplication::translate("radarSetMainWindow", "LED", nullptr));
@@ -634,11 +632,12 @@ public:
         label_13->setText(QApplication::translate("radarSetMainWindow", "\351\200\232\351\201\223", nullptr));
         label_11->setText(QApplication::translate("radarSetMainWindow", "\351\233\267\350\276\276\347\274\226\345\217\267\357\274\232", nullptr));
         pushButton_5->setText(QApplication::translate("radarSetMainWindow", "\350\277\236\346\216\245\350\256\276\345\244\207", nullptr));
-        lineEdit_6->setText(QString());
+        lineEdit_6->setText(QApplication::translate("radarSetMainWindow", "0", nullptr));
         groupBox->setTitle(QApplication::translate("radarSetMainWindow", "\347\233\270      \346\234\272", nullptr));
-        pushButton->setText(QApplication::translate("radarSetMainWindow", "\345\275\225\345\210\266\350\247\206\351\242\221", nullptr));
-        pushButton_3->setText(QApplication::translate("radarSetMainWindow", "\345\274\200\345\220\257\350\247\206\351\242\221", nullptr));
         label_3->setText(QApplication::translate("radarSetMainWindow", "2024-09-12 15:07:58", nullptr));
+        groupBox_3->setTitle(QString());
+        pushButton_3->setText(QApplication::translate("radarSetMainWindow", "\345\274\200\345\220\257\350\247\206\351\242\221", nullptr));
+        pushButton->setText(QApplication::translate("radarSetMainWindow", "\345\275\225\345\210\266\350\247\206\351\242\221", nullptr));
         menu_2->setTitle(QApplication::translate("radarSetMainWindow", "\351\233\267\350\276\276\350\256\276\347\275\256", nullptr));
         menu->setTitle(QApplication::translate("radarSetMainWindow", "\347\263\273\347\273\237\351\205\215\347\275\256", nullptr));
         menuObject->setTitle(QApplication::translate("radarSetMainWindow", "Object\346\250\241\345\274\217", nullptr));

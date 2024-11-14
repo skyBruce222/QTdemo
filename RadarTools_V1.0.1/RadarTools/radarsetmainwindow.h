@@ -107,7 +107,7 @@ private:
     QList<QCameraInfo> cameras;//可用相机列表
 
     QCameraImageCapture *imageCapture; //抓图
-    QMediaRecorder* mediaRecorder;//录像
+    QMediaRecorder* mediaRecorder = Q_NULLPTR;//录像
     QDateTime currentTime;
     CANThread *canthread;
     int xScale = 0,yScale = 0,angle = 0;

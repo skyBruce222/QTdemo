@@ -60,22 +60,36 @@ void radarParasMainWindow::on_pushButton_3_clicked()
 void radarParasMainWindow::on_pushButton_2_clicked()
 {
     //set radar parameters
+    unsigned char data[8];
+
     if (connectFlag){
-        unsigned char data[8];
-        data[0] = 0xff;
+        memset((void *)data,0,sizeof(data));
+        if (ui->checkBox->isChecked()){
+            //qDebug()<< "checkBoxisChecked";
+            data[0] = 0xff;
+        } else {
+            data[0] = 0x00;
+        }
         data[1] = 0x00;
-        data[2] = 0x02;
+        if (ui->checkBox_2->isChecked())
+            data[2] = 0x02;
+        else
+            data[2] = 0xff;
         data[3] = 0x00;
         data[4] = (ui->lineEdit->text().toUInt()&0x07);
         data[5] = 0x00;
         data[6] = 0x00;
-        data[7] = 0x10;
-        if (ui->comboBox_5->currentText() == "250Kbps"){
-            data[7] = 0x30;
-        } else if (ui->comboBox_5->currentText() == "500Kbps"){
+        if (ui->checkBox_6->isChecked()){
             data[7] = 0x10;
+            if (ui->comboBox_5->currentText() == "250Kbps"){
+                data[7] = 0x30;
+            } else if (ui->comboBox_5->currentText() == "500Kbps"){
+                data[7] = 0x10;
+            } else {
+                data[7] = 0x50;
+            }
         } else {
-            data[7] = 0x50;
+            data[7] = 0x00;
         }
 
         emit setParasSig(data,8);
@@ -88,7 +102,18 @@ void radarParasMainWindow::on_pushButton_2_clicked()
 }
 
 void radarParasMainWindow::radarDataRespond(unsigned char id, unsigned char mode, unsigned char baud){
-    qDebug()<<id<<mode<<baud;
+    //qDebug()<<id<<mode<<baud;
+    ui->lineEdit->setText(QString::number(id));
+    ui->comboBox->setCurrentIndex((int)mode);
+    if (baud == 0){
+        ui->comboBox_5->setCurrentIndex(1);
+    } else if (baud == 1){
+        ui->comboBox_5->setCurrentIndex(0);
+    } else if (baud == 2){
+        ui->comboBox_5->setCurrentIndex(2);
+    } else {
+        ui->comboBox_5->setCurrentIndex(1);
+    }
 }
 
 void radarParasMainWindow::connectSucceedSlot(bool flag){

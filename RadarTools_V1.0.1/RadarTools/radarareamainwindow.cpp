@@ -79,19 +79,28 @@ void radarAreaMainWindow::on_pushButton_2_clicked()
 {
     //set radar parameters
     //0x401
+    float p1_latf;
+    float p1_longf;
+    float p2_latf;
+    float p2_longf;
+    short int p1_lat;
+    short int p1_long;
+    short int p2_lat;
+    short int p2_long;
+    unsigned int maxNum;
     unsigned char data[8];
     memset((void *)data, 0, sizeof(data));
     if (connectFlag){
         if (ui->comboBox->currentText() == tr("Active") && ui->comboBox_2->currentText() == tr("Active")){
-            float p1_latf = ((ui->lineEdit->text().toFloat()+204.6)*5);
-            float p1_longf = ((ui->lineEdit_3->text().toFloat()+500)*5);
-            float p2_latf = ((ui->lineEdit_2->text().toFloat()+204.6)*5);
-            float p2_longf = ((ui->lineEdit_4->text().toFloat()+500)*5);
-            unsigned int maxNum = ui->lineEdit_5->text().toUInt();
-            short int p1_lat = (short int )p1_latf;
-            short int p1_long = (short int )p1_longf;
-            short int p2_lat = (short int )p2_latf;
-            short int p2_long = (short int )p2_longf;
+            p1_latf = ((ui->lineEdit->text().toFloat()+204.6)*5);
+            p1_longf = ((ui->lineEdit_3->text().toFloat()+500)*5);
+            p2_latf = ((ui->lineEdit_2->text().toFloat()+204.6)*5);
+            p2_longf = ((ui->lineEdit_4->text().toFloat()+500)*5);
+            p1_lat = (short int )p1_latf;
+            p1_long = (short int )p1_longf;
+            p2_lat = (short int )p2_latf;
+            p2_long = (short int )p2_longf;
+            maxNum = ui->lineEdit_5->text().toUInt();
             data[0] = (unsigned char)maxNum;
             data[1] = 0x01;
             data[2] = ((p1_long&0xfe0)>>5);
@@ -100,7 +109,7 @@ void radarAreaMainWindow::on_pushButton_2_clicked()
             data[5] = ((p2_long&0xfe0)>>5);
             data[6] = ((p2_long&0x1f)<<3)+((p2_lat&0x700)>>8);
             data[7] = (p2_lat&0xff);
-            qDebug()<<p1_latf<<p2_latf<<p2_longf<<p1_longf;
+            //qDebug()<<p1_latf<<p2_latf<<p2_longf<<p1_longf;
             if (p2_longf>p1_longf && p1_latf>p2_latf){
                 emit setAreaSig(data,8);
             }
@@ -110,8 +119,11 @@ void radarAreaMainWindow::on_pushButton_2_clicked()
                 else
                     QMessageBox::information(this,"System Prompt","radar Area set paras error!");
             }
-
         }else {
+            if (languageFlag)
+                QMessageBox::information(this,"提示","区域设置未使能！");
+            else
+                QMessageBox::information(this,"System Prompt","radar Area set paras unenable!");
             this->close();
         }
     } else {

@@ -145,14 +145,16 @@ void radarSetMainWindow::setAreaSlot(unsigned char * data, uint8_t len){
 //    for (uint8_t i = 0; i < len; i++){
 //          qDebug()<<QString::number(data[i],16);
 //    }
-
+     unsigned int msgId = ui->lineEdit_6->text().toUInt();
     if(canthread->sendData(QVariant(ui->comboBox_2->currentIndex()).toUInt(),//ch
-                        0x401,
+                        (0x401+msgId*0x10),
                         0,
                         0,
                         data,len))
     {
-         sendSetAreaOrder = true;
+        //ui->widget_4->updatePoints(0,0,0,0,0,0,0,0);//清除画布上的目标显示
+        //ui->widget_4->updataArea(0,0,0,0);//清除画布上的雷达检测区域显示
+        sendSetAreaOrder = true;
     }
 }
 
@@ -166,9 +168,9 @@ void radarSetMainWindow::setParasSlot(unsigned char *data, uint8_t len){
     for (uint8_t i = 0; i < len; i++){
           qDebug()<<QString::number(data[i],16);
     }
-
+     unsigned int msgId = ui->lineEdit_6->text().toUInt();
     if(canthread->sendData(QVariant(ui->comboBox_2->currentIndex()).toUInt(),//ch
-                        0x200,
+                        (0x200+msgId*0x10),
                         0,
                         0,
                         data,len))
@@ -350,7 +352,10 @@ void radarSetMainWindow::switchLanguage(const QString &lang){
             ui->pushButton_2->setText(tr("关闭显示"));
         else
             ui->pushButton_2->setText(tr("显示信息"));
-        ui->pushButton->setText(tr("录制视频"));
+        if ( ui->pushButton->text() != tr("录制视频") &&  ui->pushButton->text() != tr("Record"))
+            ui->pushButton->setText(tr("停止录制"));
+        else
+            ui->pushButton->setText(tr("录制视频"));
         ui->groupBox_2->setTitle(tr("雷      达"));
         ui->label_8->setText(tr("雷达型号："));
         ui->label->setText(tr("连接状态"));
@@ -389,7 +394,11 @@ void radarSetMainWindow::switchLanguage(const QString &lang){
             ui->pushButton_3->setText(tr("Close"));
         else
             ui->pushButton_3->setText(tr("Open"));
-        ui->pushButton->setText(tr("Record"));
+        if ( ui->pushButton->text() != tr("录制视频") &&  ui->pushButton->text() != tr("Record"))
+            ui->pushButton->setText(tr("Stop"));
+        else
+            ui->pushButton->setText(tr("Record"));
+
         if (ui->pushButton_2->text() != tr("Display Info") && ui->pushButton_2->text() != tr("显示信息"))
             ui->pushButton_2->setText(tr("Turn Off"));
         else
@@ -463,7 +472,7 @@ void radarSetMainWindow::on_setAPPDispalyPushButton_clicked()
     xScale = ui->X_lineEdit->text().toInt();
     yScale = ui->Y_lineEdit->text().toInt();
     angle = ui->angle_lineEdit->text().toInt();
-    if (yScale > 50){
+    if (yScale > 60){
         if (languageSwitch){
             QMessageBox::information(this,tr("System Prompts"),tr("The input Y-axis range is too large"));
         }else{
@@ -471,7 +480,7 @@ void radarSetMainWindow::on_setAPPDispalyPushButton_clicked()
         }
         return;
     }
-    if (xScale > 25){
+    if (xScale > 40){
         if (languageSwitch){
              QMessageBox::information(this,tr("System Prompts"),tr("The input X-axis range is too large"));
         }else{
@@ -479,7 +488,7 @@ void radarSetMainWindow::on_setAPPDispalyPushButton_clicked()
         }
         return;
     }
-    if (angle > 120){
+    if (angle > 180){
         if (languageSwitch){
              QMessageBox::information(this,tr("System Prompts"),tr("The input angle range is too large"));
         }else{
@@ -527,7 +536,9 @@ void radarSetMainWindow::on_pushButton_5_clicked()
             if(ui->comboBox_5->currentText().indexOf("Kbps") != -1)
                 baundRate = ui->comboBox_5->currentText().remove("Kbps").toUInt();
             else
-                baundRate = QVariant(ui->comboBox_5->currentText().remove("Mbps").toFloat()).toUInt();
+                baundRate = QVariant(ui->comboBox_5->currentText().remove("Mbps").toFloat()).toUInt()*1000;
+
+            //qDebug()<<baundRate;
             bool dev = canthread->openDevice(4,//QVariant(ui->comboBox->currentIndex()).toUInt(),
                                           0,//设备索引,可能需要修改
                                           baundRate);
@@ -584,6 +595,8 @@ void radarSetMainWindow::on_pushButton_5_clicked()
             emit connectSucceedSig(connectStates);
             filePath.clear();
             setLED(ui->label_led, 0, 22);//灰色
+            ui->widget_4->updatePoints(0,0,0,0,0,0,0,0);//清除画布上的目标显示
+            ui->widget_4->updataArea(0,0,0,0);//清除画布上的雷达检测区域显示
             canthread->stop();
             canthread->reSetCAN();
             canthread->closeDevice();
@@ -596,6 +609,9 @@ void radarSetMainWindow::on_pushButton_5_clicked()
 void radarSetMainWindow::onGetProtocolData(VCI_CAN_OBJ *vci,unsigned int dwRel,unsigned int channel){
     //qDebug()<<"CH"<<channel;
     uint8_t index = 0;
+    bool updataAreaFlag = false;
+    unsigned int msgId = ui->lineEdit_6->text().toUInt();
+
     targetNum = 0;
     memset((void *)x,0,sizeof(x));
     memset((void *)y,0,sizeof(y));
@@ -611,12 +627,12 @@ void radarSetMainWindow::onGetProtocolData(VCI_CAN_OBJ *vci,unsigned int dwRel,u
 
     for(unsigned int i = 0;i < dwRel;i ++)
     {
-        if (vci[i].ID == 0x60A){
+        if (vci[i].ID == (0x60A + msgId*0x10)){
             targetNum = vci[i].Data[0];
             //qDebug()<<"num"<<targetNum;
         }
 
-        if(vci[i].ID == 0x60B){
+        if(vci[i].ID == (0x60B + msgId*0x10)){
 //            qDebug()<<(vci[i].Data[1]*32 + (vci[i].Data[2]>>3))*0.2-500;//y
 //            qDebug()<<((vci[i].Data[2]&0x07)*256 + vci[i].Data[3])*0.2 - 204.6;//x
 //            qDebug()<<(vci[i].Data[4]*4+(vci[i].Data[5]>>6))*0.25-128;//vy
@@ -637,27 +653,28 @@ void radarSetMainWindow::onGetProtocolData(VCI_CAN_OBJ *vci,unsigned int dwRel,u
             index ++;
         }
 
-
-        if (vci[i].ID == 0x201){//雷达状态信息
+        if (vci[i].ID == (0x201 + msgId*0x10)){//雷达状态信息
+            //qDebug()<<vci[i].Data[4]<<vci[i].Data[5]<<vci[i].Data[6];
             radarID_paraswin = (unsigned char)(vci[i].Data[4]&0x07);
             radarOutMode = (unsigned char)((vci[i].Data[5]&0x0c)>>2);
             radarBaud = (unsigned char)((vci[i].Data[6]&0xe0)>>5);
         }
 
-        if (vci[i].ID == 0x700){//心跳
+        if (vci[i].ID == (0x700 + msgId*0x10)){//心跳
 //            qDebug()<<QString::number(vci[i].ID,16);
 //            for(int j = 0;j < vci[i].DataLen;j ++){
 //                qDebug()<< QString("%1 ").arg(vci[i].Data[j],2,16,QChar('0')).toUpper();
 //            }
         }
 
-        if (vci[i].ID == 0x402){//碰撞区域信息
+        if (vci[i].ID == (0x402 + msgId*0x10)){//碰撞区域信息
             maxNumTarget = vci[i].Data[0]&0x3f;
             radarID = ((vci[i].Data[0]&0xC0)>>6);
             p1_long= ((vci[i].Data[1]&0xff)<<5)+((vci[i].Data[2]&0xfc)>>3);
             p1_lat = ((vci[i].Data[2]&0x07)<<8)+(vci[i].Data[3]&0xff);
             p2_long = ((vci[i].Data[4]&0xff)<<5)+((vci[i].Data[5]&0xfc)>>3);
             p2_lat = ((vci[i].Data[5]&0x07)<<8)+(vci[i].Data[6]&0xff);
+            updataAreaFlag = true;
         }
 
     }
@@ -665,6 +682,10 @@ void radarSetMainWindow::onGetProtocolData(VCI_CAN_OBJ *vci,unsigned int dwRel,u
     if (index == targetNum){//确保数据是全的
         emit writeDataSig(targetNum,ID,targetSate,x,y,vel,RCS_A,Range,targetAngle);
         ui->widget_4->updatePoints(x,y,vel,Range,targetAngle,ID,targetNum,switchTargetInfo);
+    }
+
+    if (updataAreaFlag == true){
+        ui->widget_4->updataArea(p1_long,p1_lat,p2_long,p2_lat);
     }
 
     if (sendReadAreaOrder){
@@ -762,9 +783,36 @@ void radarSetMainWindow::on_pushButton_3_clicked()
 void radarSetMainWindow::on_pushButton_clicked()
 {
     //Record a video
+    if (curCamera != Q_NULLPTR){
+        if (languageSwitch){
+            if (ui->pushButton->text() == "Record"){
+                mediaRecorder = new QMediaRecorder(curCamera, this);
+                //qDebug()<<mediaRecorder->isMuted();
+                if (mediaRecorder->isMuted())
+                {
+                    ui->pushButton->setText("Stop");
+                    mediaRecorder->record();
+                }
+            } else {
+                ui->pushButton->setText("Record");
+                mediaRecorder->stop();
+            }
+        }else {
+            if (ui->pushButton->text() == "录制视频"){
+                mediaRecorder = new QMediaRecorder(curCamera, this);
+                //qDebug()<<mediaRecorder->isMuted();
+                if (mediaRecorder->isMuted())
+                {
+                    ui->pushButton->setText("停止录制");
+                    mediaRecorder->record();
+                }
+            } else {
+                ui->pushButton->setText("录制视频");
+                mediaRecorder->stop();
+            }
+        }
+    }
 }
-
-
 
 void radarSetMainWindow::on_pushButton_2_clicked()
 {

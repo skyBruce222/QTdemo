@@ -292,12 +292,12 @@ public:
         radarAreaMainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(radarAreaMainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 600, 21));
+        menubar->setGeometry(QRect(0, 0, 600, 23));
         radarAreaMainWindow->setMenuBar(menubar);
 
         retranslateUi(radarAreaMainWindow);
 
-        comboBox_2->setCurrentIndex(1);
+        comboBox_2->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(radarAreaMainWindow);

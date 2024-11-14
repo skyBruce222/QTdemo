@@ -133,24 +133,28 @@ void MainWindow::on_loginPushButton_clicked()
        QString lock = setting.value("login/password").toString(); // 密码
        QString language = setting.value("login/language").toString(); // 是否选择了记住密码
        if (name.isEmpty()||lock.isEmpty()){
-           if (textname.isEmpty() || textpassword.isEmpty()){
-               if(languageSwitch){
-                   QMessageBox::information(this,"System Prompts","please registered username and password!");
-               }else {
-                   QMessageBox::information(this,"提示","请注册账号密码！");
-               }
-               return;
-           }
-           if (name.isEmpty()){
-               setting.setValue("login/username", textname); // 把账号写入ini文件
-           }
-           if (lock.isEmpty()){
-               setting.setValue("login/password", textpassword); // 把账号写入ini文件
-           }
-           if (language.isEmpty()){
-                setting.setValue("login/language", "中文"); // 把账号写入ini文件
-           }
-           setting.setValue("login_name/admin",textpassword);
+//           if (textname.isEmpty() || textpassword.isEmpty()){
+//               if(languageSwitch){
+//                   QMessageBox::information(this,"System Prompts","please registered username and password!");
+//               }else {
+//                   QMessageBox::information(this,"提示","请注册账号密码！");
+//               }
+//               return;
+//           }
+//           if (name.isEmpty()){
+//               setting.setValue("login/username", textname); // 把账号写入ini文件
+//           }
+//           if (lock.isEmpty()){
+//               setting.setValue("login/password", textpassword); // 把账号写入ini文件
+//           }
+//           if (language.isEmpty()){
+//                setting.setValue("login/language", "中文"); // 把账号写入ini文件
+//           }
+//           setting.setValue("login_name/admin",textpassword);
+           if (languageSwitch)
+                QMessageBox::critical(this,"error","The account password does not exist");
+           else
+                QMessageBox::critical(this,"错误","未存在账号密码");
            return ;
        }
 

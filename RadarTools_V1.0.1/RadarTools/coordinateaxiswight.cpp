@@ -24,6 +24,27 @@ void coordinateAxisWight::updateAxis(int xScale, int yScale, int angle){
     xScale_g = xScale;
     yScale_g = yScale;
     angle_g = angle;
+
+    //single_y = yScale_g / (double)(height() - 50);
+    //single_x = xScale_g /(double)(width() - 50);
+
+    update();
+}
+
+void coordinateAxisWight::updataArea(int p1_long, int p1_lat, int p2_long, int p2_lat){
+
+    single_y = yScale_g / (double)(height() - 50);
+    single_x = xScale_g /(double)(width() - 50);
+
+    float p1_l = (p1_long/5.0 - 500);
+    float p1_l2 = (p1_lat/5.0 - 204.6);
+    float p2_l = (p2_long/5.0 -500);
+    float p2_l2 = (p2_lat/5.0 - 204.6);
+    lat1 = p1_l2/(2*single_x);
+    lat2 = p2_l2/(2*single_x);
+    long1 = p1_l/single_y;
+    long2 = p2_l/single_y;
+    //qDebug()<<lat1<<lat2<<long1<<long2;
     update();
 }
 
@@ -32,9 +53,8 @@ void coordinateAxisWight::updatePoints(
         float *R, float *targetAngle,
         unsigned int *ID, unsigned int len,
         bool display){
-
-   double single_y = yScale_g / (double)(height() - 50);
-   double single_x = xScale_g /(double)(width() - 50);
+   single_y = yScale_g / (double)(height() - 50);
+   single_x = xScale_g /(double)(width() - 50);
    dataLen = len;
    displayInfo = display;
    bool updateFlag = false;
@@ -181,18 +201,34 @@ void coordinateAxisWight::paintEvent(QPaintEvent *event){
             painter.drawLine(width()-30, i, width()-25, i);
     }
 
-    pen.setColor(Qt::red);
+    //画线
+    pen.setColor(Qt::darkGreen);
     painter.setPen(pen);
-
     double angleRad = (90 - angle_g/2)*(3.1415926/180);
     double opposite = xScale_g*tan(angleRad);
     double single = yScale_g / (double)(height() - 50);
     double Ylength = opposite/single;
     painter.drawLine(width()/2, height()-25, width()-25, height() -25 - Ylength);
     painter.drawLine(width()/2, height()-25, 25, height() -25 - Ylength);
+    //qDebug()<<lat2<<width()/2 - xScale_g/(2*single_x)<<lat1<< width()/2 + xScale_g/(2*single_x);
+    pen.setColor(Qt::red);
+    painter.setPen(pen);
+    if (lat1 > 0 && long2 > 0 &&
+        long2 < yScale_g/single &&
+        lat1 < width()/2 + xScale_g/(2*single_x) &&
+        fabs(lat2) > width()/2 - xScale_g/(2*single_x)){
+        painter.drawLine(width()/2+lat2,height()-25-long2,width()/2+lat1,height() -25 - long2);
+        painter.drawLine(width()/2+lat2,height()-25,width()/2+lat2,height() -25 - long2);
+        painter.drawLine(width()/2+lat1,height()-25,width()/2+lat1,height() -25 - long2);
+    }
+    if(long1 > 0 && lat1 > 0){
+        painter.drawLine(width()/2+lat2,height()-25-long1,width()-25+lat1,height() -25 - long1);
+    }
 
+    //画目标
     QPolygonF triangle;
-
+    pen.setWidth(2);//设置线宽为1
+    painter.setPen(pen);
     painter.setBrush(QBrush(Qt::NoBrush));
     for(unsigned int  i = 0; i < dataLen; i++){
         triangle << QPointF(point_X[i], point_Y[i] - 5) << QPointF(point_X[i] - 5, point_Y[i] + 5)<< QPointF(point_X[i] + 5, point_Y[i] + 5);
@@ -200,6 +236,7 @@ void coordinateAxisWight::paintEvent(QPaintEvent *event){
         triangle.clear();
     }
 
+    pen.setWidth(1);//设置线宽为1
     if (displayInfo){
         pen.setColor(Qt::darkGray);
         painter.setPen(pen);
