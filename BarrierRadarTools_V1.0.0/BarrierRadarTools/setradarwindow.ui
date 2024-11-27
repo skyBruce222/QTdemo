@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>setRadarWindow</class>
+ <widget class="QMainWindow" name="setRadarWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1088</width>
+    <height>782</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_11">
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="minimumSize">
+       <size>
+        <width>280</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>280</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>雷达配置</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_10">
+       <item row="4" column="0">
+        <widget class="QWidget" name="widget_6" native="true">
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>杆型选择</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBox">
+            <property name="minimumSize">
+             <size>
+              <width>127</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="currentIndex">
+             <number>-1</number>
+            </property>
+            <item>
+             <property name="text">
+              <string>直杆</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>栅栏</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>广告</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QWidget" name="widget_5" native="true">
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>右距离(m)    </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEdit_4"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QWidget" name="widget_4" native="true">
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>左距离(m)    </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEdit_3"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QWidget" name="widget_7" native="true">
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>杆件方向</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBox_2">
+            <property name="minimumSize">
+             <size>
+              <width>127</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="currentIndex">
+             <number>-1</number>
+            </property>
+            <item>
+             <property name="text">
+              <string>左</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>右</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>普通直杆</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QWidget" name="widget_3" native="true">
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>起始距离(m)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEdit_2"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QWidget" name="widget_9" native="true">
+         <layout class="QGridLayout" name="gridLayout_9">
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBox_4">
+            <property name="minimumSize">
+             <size>
+              <width>127</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="currentIndex">
+             <number>-1</number>
+            </property>
+            <item>
+             <property name="text">
+              <string>开</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>关</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>雷达日志</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QWidget" name="widget" native="true">
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>纵向距离(m)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEdit"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QWidget" name="widget_8" native="true">
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>目标区分</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBox_3">
+            <property name="minimumSize">
+             <size>
+              <width>127</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="currentIndex">
+             <number>-1</number>
+            </property>
+            <item>
+             <property name="text">
+              <string>是</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>否</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QWidget" name="widget_10" native="true">
+         <layout class="QGridLayout" name="gridLayout_12">
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="text">
+             <string>读取</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" rowspan="2">
+           <widget class="QPushButton" name="pushButton_4">
+            <property name="text">
+             <string>学习</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" rowspan="2">
+           <widget class="QPushButton" name="pushButton">
+            <property name="text">
+             <string>配置</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="text">
+             <string>重启</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QWidget" name="widget_13" native="true">
+         <layout class="QGridLayout" name="gridLayout_16">
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lineEdit_5"/>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="pushButton_8">
+            <property name="minimumSize">
+             <size>
+              <width>25</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>25</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="pushButton_7">
+            <property name="text">
+             <string>固件升级</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <widget class="QProgressBar" name="progressBar">
+            <property name="value">
+             <number>0</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="0" rowspan="2">
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="title">
+       <string>目标显示</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="coordinateAxisWight" name="widget_2" native="true">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>8</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="title">
+       <string>显示配置</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_14">
+       <item row="0" column="0">
+        <widget class="QWidget" name="widget_11" native="true">
+         <layout class="QGridLayout" name="gridLayout_13">
+          <item row="0" column="0">
+           <widget class="QPushButton" name="pushButton_5">
+            <property name="text">
+             <string>所有目标</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="pushButton_6">
+            <property name="text">
+             <string>显示速度</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="pushButton_10">
+            <property name="text">
+             <string>显示坐标</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="pushButton_9">
+            <property name="text">
+             <string>停止显示</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QWidget" name="widget_12" native="true">
+         <layout class="QGridLayout" name="gridLayout_15">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>时间</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_led">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>状态</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>coordinateAxisWight</class>
+   <extends>QWidget</extends>
+   <header location="global">coordinateaxiswight.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

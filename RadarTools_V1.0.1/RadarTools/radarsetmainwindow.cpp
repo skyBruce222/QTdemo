@@ -613,11 +613,11 @@ void radarSetMainWindow::onGetProtocolData(VCI_CAN_OBJ *vci,unsigned int dwRel,u
     unsigned int msgId = ui->lineEdit_6->text().toUInt();
 
     targetNum = 0;
-    memset((void *)x,0,sizeof(x));
-    memset((void *)y,0,sizeof(y));
+    memset((void *)x, 0, sizeof(x));
+    memset((void *)y, 0, sizeof(y));
     memset((void *)ID, 0, sizeof(ID));//雷达目标ID号
     memset((void *)vel, 0, sizeof(vel));
-    memset((void *)Range,0,sizeof(Range));
+    memset((void *)Range, 0, sizeof(Range));
     memset((void *)targetAngle, 0, sizeof(targetAngle));
     memset((void *)targetSate, 0, sizeof(targetSate));
 
@@ -650,7 +650,7 @@ void radarSetMainWindow::onGetProtocolData(VCI_CAN_OBJ *vci,unsigned int dwRel,u
             vel[index] = sqrt(vx*vx + vy*vy)*3.6;
             RCS_A[index] = vci[i].Data[7]*0.5-64;
             targetSate[index] = (vci[i].Data[6]&0x07);
-            index ++;
+            index = (index + 1) % 64;//防止非法越界
         }
 
         if (vci[i].ID == (0x201 + msgId*0x10)){//雷达状态信息
@@ -682,6 +682,9 @@ void radarSetMainWindow::onGetProtocolData(VCI_CAN_OBJ *vci,unsigned int dwRel,u
     if (index == targetNum){//确保数据是全的
         emit writeDataSig(targetNum,ID,targetSate,x,y,vel,RCS_A,Range,targetAngle);
         ui->widget_4->updatePoints(x,y,vel,Range,targetAngle,ID,targetNum,switchTargetInfo);
+    } else {
+        emit writeDataSig(index,ID,targetSate,x,y,vel,RCS_A,Range,targetAngle);
+        ui->widget_4->updatePoints(x,y,vel,Range,targetAngle,ID,index,switchTargetInfo);
     }
 
     if (updataAreaFlag == true){

@@ -28,9 +28,9 @@ private:
     double long1 = 0;
     double long2 = 0;
     unsigned int dataLen;
-    int point_X[64],point_Y[64];
-    float x_axis[64],y_axis[64], distance[64],angle[64], velocity[64];
-    unsigned int p_ID[64];
+    int point_X[96],point_Y[96];
+    float x_axis[96],y_axis[96], distance[96],angle[96], velocity[96];
+    unsigned int p_ID[96];
     bool displayInfo = false;
     uint8_t updateCnt = 0;
     double single_y,single_x;

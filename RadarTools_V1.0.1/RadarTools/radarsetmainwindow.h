@@ -113,8 +113,8 @@ private:
     int xScale = 0,yScale = 0,angle = 0;
     bool connectStates = false;
     bool languageSwitch = false;
-    float x[64],y[64],vel[64],RCS_A[64],Range[64],targetAngle[64];
-    unsigned int  ID[64],targetSate[64];
+    float x[96],y[96],vel[96],RCS_A[96],Range[96],targetAngle[96];
+    unsigned int  ID[96],targetSate[96];
     unsigned int targetNum = 0;
     bool switchTargetInfo = false;
     bool AngleFlag = true,RangeFlag=true,VelocityFlag=true,RCSFlag=true,SateFlag=true,ClassFlag = true;//写入数据类型标志

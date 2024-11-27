@@ -75,7 +75,7 @@ void coordinateAxisWight::updatePoints(
    if (!updateFlag){
        updateCnt ++;
    }
-   if (updateFlag || updateCnt >=5){//确保目标不闪屏，有时候can数据接受不完全，会导致闪屏
+   if (updateFlag || updateCnt >= 3){//确保目标不闪屏，有时候can数据接受不完全，会导致闪屏
       updateCnt = 0;
       update();
    }
@@ -213,16 +213,22 @@ void coordinateAxisWight::paintEvent(QPaintEvent *event){
     //qDebug()<<lat2<<width()/2 - xScale_g/(2*single_x)<<lat1<< width()/2 + xScale_g/(2*single_x);
     pen.setColor(Qt::red);
     painter.setPen(pen);
+    if (long2 < yScale_g/single){
+        painter.drawLine(width()/2+lat2,height()-25-long2,width()/2+lat1,height() -25 - long2);//框的上
+    }
     if (lat1 > 0 && long2 > 0 &&
-        long2 < yScale_g/single &&
         lat1 < width()/2 + xScale_g/(2*single_x) &&
         fabs(lat2) > width()/2 - xScale_g/(2*single_x)){
-        painter.drawLine(width()/2+lat2,height()-25-long2,width()/2+lat1,height() -25 - long2);
-        painter.drawLine(width()/2+lat2,height()-25,width()/2+lat2,height() -25 - long2);
-        painter.drawLine(width()/2+lat1,height()-25,width()/2+lat1,height() -25 - long2);
+        if (height() -25 - long2 > 25){
+            painter.drawLine(width()/2+lat2,height()-25,width()/2+lat2,height() -25 - long2);//右
+            painter.drawLine(width()/2+lat1,height()-25,width()/2+lat1,height() -25 - long2);//左
+        } else {
+            painter.drawLine(width()/2+lat2,height()-25,width()/2+lat2,25);//右
+            painter.drawLine(width()/2+lat1,height()-25,width()/2+lat1,25);//左
+        }
     }
     if(long1 > 0 && lat1 > 0){
-        painter.drawLine(width()/2+lat2,height()-25-long1,width()-25+lat1,height() -25 - long1);
+        painter.drawLine(width()/2+lat2,height()-25-long1,width()-25+lat1,height() -25 - long1);//框的下
     }
 
     //画目标
